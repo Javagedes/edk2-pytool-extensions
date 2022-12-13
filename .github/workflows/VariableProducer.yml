@@ -15,6 +15,7 @@ outputs:
   node-versions: ${{ steps.set-node-versions.outputs.VERSION }}
 
 runs:
+  using: "composite"
   steps:
   - name: Produce Python Version
     id: set-python-versions
