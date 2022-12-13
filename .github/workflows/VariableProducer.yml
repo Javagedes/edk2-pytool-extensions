@@ -10,12 +10,12 @@ on:
         description: 'Python Versions'
         value: ${{ jobs.variables.outputs.python-versions }}
       node-versions: 
-        description: 'Node Versions'
+        description: 'Node Version'
         value: ${{ jobs.variables.outputs.node-versions }}
 
 env:
   python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
-  node-versions: "['19',]"
+  node-versions: "19"
 
 jobs:
   variables:
