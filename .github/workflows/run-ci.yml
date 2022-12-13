@@ -14,17 +14,12 @@ on:
 
 jobs:
   variables:
-    steps:
-    - uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
-      id: produce
+    uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
+    id: produce
 
   ci:
-    name: CI Tests
-
     needs: variables
-
-    steps:
-    - uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner@gh-action
+    uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner@gh-action
       with:
         python-version: ${{ fromJson(needs.variables.produce.outputs.python-version)[0] }}
         node-version: ${{ fromJson(needs.variables.produce.outputs.node-version)[0] }}
