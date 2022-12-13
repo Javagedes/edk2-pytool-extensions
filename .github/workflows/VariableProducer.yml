@@ -3,8 +3,8 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 
-on:
-  workflow_call:
+name: 'Produce Variables'
+description: 'Produces Variables'
 
 env:
   python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
