@@ -11,7 +11,7 @@ env:
   node-versions: "['19']"
 
 jobs:
-  variables:
+  variable:
     name: Produce Variables
 
     runs-on: ubuntu-latest
