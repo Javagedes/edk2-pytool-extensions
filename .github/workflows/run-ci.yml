@@ -20,7 +20,7 @@ jobs:
   test:
     needs: produce-variables
     steps:
-      run: echo ${{ needs.produce-variables.outputs.python-versions }}
+      - run: echo ${{ needs.produce-variables.outputs.python-versions }}
   ci:
     needs: produce-variables
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner.yml@gh-action
