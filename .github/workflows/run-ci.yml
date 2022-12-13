@@ -19,7 +19,7 @@ jobs:
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
   
   ci:
-    needs: produce-variables
+    needs: variables
     name: CI
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner.yml@gh-action
     with:
@@ -28,7 +28,7 @@ jobs:
       package-src: edk2toolext
   
   unit-test:
-    needs: [produce-variables,ci]
+    needs: [variables,ci]
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/UnitTestRunner.yml@gh-action
     with:
       python-versions: ${{ needs.produce-variables.outputs.python-versions }}
