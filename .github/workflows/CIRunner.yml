@@ -56,7 +56,7 @@ jobs:
     
     - name: Run flake8
       if: success() || failure()
-      run: flake8 ${{ env.package-src }}
+      run: flake8 ${{ inputs.package-src }}
     
     - name: Run markdownlint
       if: success() || failure()
@@ -68,7 +68,7 @@ jobs:
     
     - name: Run pydocstyle
       if: success() || failure()
-      run: pydocstyle ${{ env.package-src }}
+      run: pydocstyle ${{ inputs.package-src }}
     
     - name: Run mkdocs build
       if: success() || failure()
