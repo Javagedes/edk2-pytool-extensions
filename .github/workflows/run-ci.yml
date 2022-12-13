@@ -29,6 +29,7 @@ jobs:
   
   unit-test:
     needs: [variables,ci]
+    name: Unit Test
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/UnitTestRunner.yml@gh-action
     with:
       python-versions: ${{ needs.variables.outputs.python-versions }}
