@@ -13,8 +13,8 @@ on:
         type: string
 
 jobs:
-  unit-test:
-    name: Unit Tests
+  run:
+    name: Run
 
     runs-on: ${{ matrix.os }}
 

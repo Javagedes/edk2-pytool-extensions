@@ -23,8 +23,8 @@ on:
         type: string
 
 jobs:
-  ci:
-    name: CI Tests
+  run:
+    name: Run
 
     runs-on: ubuntu-latest
 

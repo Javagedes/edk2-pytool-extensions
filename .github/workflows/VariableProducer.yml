@@ -8,18 +8,18 @@ on:
     outputs:
       python-versions: 
         description: 'Python Versions'
-        value: ${{ jobs.variables.outputs.python-versions }}
+        value: ${{ jobs.produce.outputs.python-versions }}
       node-versions: 
         description: 'Node Versions'
-        value: ${{ jobs.variables.outputs.node-versions }}
+        value: ${{ jobs.produce.outputs.node-versions }}
 
 env:
   pythonversions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
   nodeversions: "['19']"
 
 jobs:
-  variables:
-    name: Produce Variables
+  produce:
+    name: Produce
 
     runs-on: ubuntu-latest
 
