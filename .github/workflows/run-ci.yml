@@ -13,8 +13,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  produce-variables:
-    uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
+  
+  uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
   
   ci:
     needs: produce-variables
