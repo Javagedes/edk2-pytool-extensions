@@ -16,20 +16,18 @@ jobs:
   produce-variables:
     name: Produce Variables
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
-
-  test:
-    needs: produce-variables
-    
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: echo [${{ needs.produce-variables.outputs.python-versions }}]
   
   ci:
     needs: produce-variables
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner.yml@gh-action
     with:
       python-version: ${{ fromJson(needs.produce-variables.outputs.python-versions)[0] }}
-      node-version: "19"
+      node-version: ${{ fromJson(needs.produce-variables.outputs.node-versions)[0] }}
       package-src: edk2toolext
+  
+  unit-test:
+    needs: [produce-variables,ci]
+    uses: Javagedes/edk2-pytool-extensions/.github/workflows/UnitTestRunner.yml@gh-action
+    with:
+      python-versions: ${{ fromJson(needs.produce-variables.outputs.python-versions) }}
   
