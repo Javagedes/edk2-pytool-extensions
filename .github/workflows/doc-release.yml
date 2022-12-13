@@ -3,13 +3,11 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 
-name: Doc Deployment
+name: Documentation
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  release:
+    types: [published]
 
 jobs:
 
@@ -18,7 +16,7 @@ jobs:
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
   
   build:
-    name: Build and Upload Site Artifact
+    name: Build
     needs: variables
     runs-on: ubuntu-latest
 
@@ -48,7 +46,7 @@ jobs:
           path: "site/"
           
   deploy:
-    name: Deploy Site Artifact
+    name: Deploy
 
     needs: [variables, build]
 
