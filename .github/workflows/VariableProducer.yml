@@ -15,7 +15,7 @@ on:
 
 env:
   python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
-  node-versions: "['19']"
+  node-versions: "['19',]"
 
 jobs:
   variables:
