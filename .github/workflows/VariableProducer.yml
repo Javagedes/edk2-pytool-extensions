@@ -10,21 +10,16 @@ env:
   python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
   node-versions: "['19']"
 
-jobs:
-  variable:
+outputs:
+  python-versions: ${{ steps.set-python-versions.outputs.VERSION }}
+  node-versions: ${{ steps.set-node-versions.outputs.VERSION }}
 
-    runs-on: ubuntu-latest
+runs:
+  steps:
+  - name: Produce Python Version
+    id: set-python-versions
+    run: echo "VERSION=$python-versions" >> $GITHUB_OUTPUT
 
-    outputs:
-      # Access these variables via needs.variables.outputs.<var-name>
-      python-versions: ${{ steps.set-python-versions.outputs.VERSION }}
-      node-versions: ${{ steps.set-node-versions.outputs.VERSION }}
-
-    steps:
-    - name: Produce Python Version
-      id: set-python-versions
-      run: echo "VERSION=$python-versions" >> $GITHUB_OUTPUT
-
-    - name: Produce Node Version
-      id: set-node-versions
-      run: echo "VERSION=$node-versions" >> $GITHUB_OUTPUT
+  - name: Produce Node Version
+    id: set-node-versions
+    run: echo "VERSION=$node-versions" >> $GITHUB_OUTPUT
