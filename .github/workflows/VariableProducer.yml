@@ -6,10 +6,10 @@
 on:
   workflow_call:
     outputs:
-      pythonversions: 
+      python-versions: 
         description: 'Python Versions'
         value: ${{ jobs.variables.outputs.python-versions }}
-      nodeversions: 
+      node-versions: 
         description: 'Node Version'
         value: ${{ jobs.variables.outputs.node-versions }}
 
