@@ -10,6 +10,8 @@ env:
   python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
   node-versions: "['19']"
 
+inputs:
+
 outputs:
   python-versions: ${{ steps.set-python-versions.outputs.VERSION }}
   node-versions: ${{ steps.set-node-versions.outputs.VERSION }}
