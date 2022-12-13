@@ -21,9 +21,9 @@ jobs:
     needs: produce-variables
     
     runs-on: ubuntu-latest
-    
+
     steps:
-      - run: echo ${{ needs.produce-variables.outputs.python-versions }}
+      - run: echo [${{ needs.produce-variables.outputs.python-versions }}]
   
   ci:
     needs: produce-variables
