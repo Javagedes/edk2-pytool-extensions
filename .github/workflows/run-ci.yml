@@ -1,0 +1,32 @@
+# This workflow runs unit tests against the specified python versions on both
+# ubuntu and windows. Additionally, it performs CI against the codebase.
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  variables:
+    steps:
+    - uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
+      id: produce
+
+  ci:
+    name: CI Tests
+
+    needs: variables
+
+    steps:
+    - uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner@gh-action
+      with:
+        python-version: ${{ fromJson(needs.variables.produce.outputs.python-version)[0] }}
+        node-version: ${{ fromJson(needs.variables.produce.outputs.node-version)[0] }}
+        package-src: edk2toolext
+  

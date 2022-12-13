@@ -1,0 +1,31 @@
+# This workflow produces variables ingested by other workflows
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+
+on:
+  workflow_call:
+
+env:
+  python-versions: "['3.11', '3.10', '3.9']" # Keep Python Versions in descending order
+  node-versions: "['19']"
+
+jobs:
+  variables:
+    name: Produce Variables
+
+    runs-on: ubuntu-latest
+  
+  outputs:
+    # Access these variables via needs.variables.outputs.<var-name>
+    python-versions: ${{ steps.set-python-versions.outputs.VERSION }}
+    node-versions: ${{ steps.set-node-versions.outputs.VERSION }}
+  
+  steps:
+    - name: Produce Python Version
+      id: set-python-versions
+      run: echo "VERSION=$python-versions" >> $GITHUB_OUTPUT
+    
+    - name: Produce Node Version
+      id: set-node-versions
+      run: echo "VERSION=$node-versions" >> $GITHUB_OUTPUT
