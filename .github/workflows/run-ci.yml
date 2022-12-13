@@ -13,14 +13,13 @@ on:
     branches: [ "master" ]
 
 jobs:
-  variables:
-    uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
+  uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
 
   ci:
-    needs: variables
+    needs: set-var
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner.yml@gh-action
     with:
-      python-version: ${{ fromJson(needs.variables.outputs.python-version)[0] }}
-      node-version: ${{ fromJson(needs.variables.outputs.node-version)[0] }}
+      python-version: ${{ fromJson(needs.set-var.outputs.python-version)[0] }}
+      node-version: ${{ fromJson(needs.set-var.outputs.node-version)[0] }}
       package-src: edk2toolext
   
