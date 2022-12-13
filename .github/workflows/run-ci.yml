@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Produce Variables
-        id: variables
+      - id: variables
         uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
+      - run: echo ${{ steps.variables.outputs.python-versions }}
 
   ci:
     needs: produce-variables
