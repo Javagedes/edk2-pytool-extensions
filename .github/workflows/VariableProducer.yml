@@ -17,10 +17,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-  - name: Produce Python Version
-    id: set-python-versions
-    run: echo "VERSION=$python-versions" >> $GITHUB_OUTPUT
+    - name: Produce Python Version
+      id: set-python-versions
+      run: echo "VERSION=$python-versions" >> $GITHUB_OUTPUT
 
-  - name: Produce Node Version
-    id: set-node-versions
-    run: echo "VERSION=$node-versions" >> $GITHUB_OUTPUT
+    - name: Produce Node Version
+      id: set-node-versions
+      run: echo "VERSION=$node-versions" >> $GITHUB_OUTPUT
