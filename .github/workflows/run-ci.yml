@@ -13,20 +13,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  produce-variables:
-    
-    runs-on: ubuntu-latest
-    
-    steps:
-      - id: variables
-        uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
-      - run: echo ${{ steps.variables.outputs.python-versions }}
+  variables:
+    name: Produce Variables
+    uses: Javagedes/edk2-pytool-extensions/.github/workflows/VariableProducer.yml@gh-action
 
   ci:
     needs: produce-variables
     uses: Javagedes/edk2-pytool-extensions/.github/workflows/CIRunner.yml@gh-action
     with:
-      python-version: ${{ fromJson(needs.produce-variables.variables.outputs.python-versions)[0] }}
-      node-version: ${{ fromJson(needs.produce-variables.variables.outputs.node-versions)[0] }}
+      python-version: ${{ fromJson(needs.variables.outputs.python-versions)[0] }}
+      node-version: ${{ fromJson(needs.variables.outputs.node-versions)[0] }}
       package-src: edk2toolext
   
