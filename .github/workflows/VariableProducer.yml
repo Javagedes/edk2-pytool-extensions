@@ -12,7 +12,6 @@ env:
 
 jobs:
   variable:
-    name: Produce Variables
 
     runs-on: ubuntu-latest
 
