@@ -225,11 +225,11 @@ def repo_details(abs_file_system_path):
             details["Branch"] = 'HEAD' if repo.head.is_detached else repo.active_branch.name
 
             # Worktrees
-            worktree_list = []
-            worktrees = repo.git.worktree("list", "--porcelain", "-z")
-            for worktree in filter(lambda worktree: worktree.startswith("worktree"), worktrees.split('\0')):
-                worktree_list.append(Path(worktree.split(" ")[1]))
-                details["Worktrees"] = worktree_list
+            # worktree_list = []
+            # worktrees = repo.git.worktree("list", "--porcelain", "-z")
+            # for worktree in filter(lambda worktree: worktree.startswith("worktree"), worktrees.split('\0')):
+            #     worktree_list.append(Path(worktree.split(" ")[1]))
+            #     details["Worktrees"] = worktree_list
 
             # head information
             details["Head"] = {"HexSha": str(repo.head.commit.hexsha), "HexShaShort": str(repo.head.commit.hexsha[:7])}

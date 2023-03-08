@@ -48,13 +48,13 @@ class self_describing_environment(object):
         self.skipped_dirs = tuple(map(Path, (os.path.join(self.workspace, d) for d in skipped_dirs)))
 
         # Respect git worktrees
-        details = repo_resolver.repo_details(self.workspace)
-        if details["Valid"]:
-            for worktree_path in details["Worktrees"]:
-                if (worktree_path.is_dir()
-                        and Path(self.workspace) != worktree_path
-                        and worktree_path not in skipped_dirs):
-                    self.skipped_dirs += (worktree_path,)
+        # details = repo_resolver.repo_details(self.workspace)
+        # if details["Valid"]:
+        #     for worktree_path in details["Worktrees"]:
+        #         if (worktree_path.is_dir()
+        #                 and Path(self.workspace) != worktree_path
+        #                 and worktree_path not in skipped_dirs):
+        #             self.skipped_dirs += (worktree_path,)
 
         # Validate that all scopes are unique.
         if len(self.scopes) != len(set(self.scopes)):
