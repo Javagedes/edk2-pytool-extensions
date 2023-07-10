@@ -323,13 +323,16 @@ def clone_repo(abs_file_system_path, DepObj):
             params.append("--recurse-submodules")  # if we don't have a reference we can just recurse the submodules
 
     # Run the command
+    error_msg = None
     try:
         repo = Repo.clone_from(DepObj["Url"], dest, multi_options=_build_params_list(branch, shallow, reference))
-    except GitCommandError:
+    except GitCommandError as e:
+        error_msg = str(e)
         repo = None
 
     if repo is None:
         if "ReferencePath" not in DepObj:
+            logging.warning(f"Failed to clone repo {DepObj['Url']}. {error_msg}")
             return (dest, False)
 
         # attempt a retry without the reference
@@ -337,7 +340,8 @@ def clone_repo(abs_file_system_path, DepObj):
 
         try:
             repo = Repo.clone_from(DepObj["Url"], dest, multi_options=_build_params_list(branch, shallow))
-        except GitCommandError:
+        except GitCommandError as e:
+            logging.warning(f"Failed to clone repo {DepObj['Url']}. {e}")
             return (dest, False)
 
     # Repo cloned, perform submodule update if necessary
