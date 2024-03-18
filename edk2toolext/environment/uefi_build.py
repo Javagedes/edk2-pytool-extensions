@@ -362,7 +362,9 @@ class UefiBuilder(object):
         # run all loaded UefiBuild Plugins
         #
         for Descriptor in self.pm.GetPluginsOfClass(IUefiBuildPlugin):
+            start_time = time.time()
             rc = Descriptor.Obj.do_pre_build(self)
+            total_time = "{:06.3f}".format(time.time() - start_time)
             if (rc != 0):
                 if (rc is None):
                     logging.error(
@@ -374,7 +376,7 @@ class UefiBuilder(object):
                     ret = rc
                 break  # fail on plugin error
             else:
-                logging.debug("Plugin Success: %s" % Descriptor.Name)
+                edk2_logging.log_progress("[%ss] Plugin Success: %s" % (total_time, Descriptor.Name))
         return ret
 
     def PostBuild(self) -> int:
@@ -396,7 +398,9 @@ class UefiBuilder(object):
         # run all loaded UefiBuild Plugins
         #
         for Descriptor in self.pm.GetPluginsOfClass(IUefiBuildPlugin):
+            start_time = time.time()
             rc = Descriptor.Obj.do_post_build(self)
+            total_time = "{:06.3f}".format(time.time() - start_time)
             if (rc != 0):
                 if (rc is None):
                     logging.error(
@@ -408,7 +412,7 @@ class UefiBuilder(object):
                     ret = rc
                 break  # fail on plugin error
             else:
-                logging.debug("Plugin Success: %s" % Descriptor.Name)
+                edk2_logging.log_progress("[%ss] Plugin Success: %s" % (total_time, Descriptor.Name))
 
         return ret
 
