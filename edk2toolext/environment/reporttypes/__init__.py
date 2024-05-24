@@ -7,4 +7,5 @@
 
 from edk2toolext.environment.reporttypes.component_report import ComponentDumpReport  # noqa: F401
 from edk2toolext.environment.reporttypes.coverage_report import CoverageReport  # noqa: F401
+from edk2toolext.environment.reporttypes.unused_component_report import UnusedComponentDumpReport  # noqa: F401
 from edk2toolext.environment.reporttypes.usage_report import UsageReport  # noqa: F401

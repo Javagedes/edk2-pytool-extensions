@@ -16,9 +16,14 @@ from datetime import datetime
 from edk2toollib.database import Edk2DB
 
 from edk2toolext import edk2_logging
-from edk2toolext.environment.reporttypes import ComponentDumpReport, CoverageReport, UsageReport
+from edk2toolext.environment.reporttypes import (
+    ComponentDumpReport,
+    CoverageReport,
+    UnusedComponentDumpReport,
+    UsageReport,
+)
 
-REPORTS = [CoverageReport(), ComponentDumpReport(), UsageReport()]
+REPORTS = [CoverageReport(), ComponentDumpReport(), UsageReport(), UnusedComponentDumpReport()]
 
 
 def setup_logging(verbose: bool) -> None:
